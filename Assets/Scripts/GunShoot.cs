@@ -5,6 +5,7 @@ using UnityEngine;
 public class GunShoot : MonoBehaviour {
 
     public Transform shootOrigin;
+    public GameObject hitParticles;
     public int damage = 1;
 
 	// Use this for initialization
@@ -28,6 +29,9 @@ public class GunShoot : MonoBehaviour {
                 Debug.Log("Hit!");
 
                 hit.collider.SendMessageUpwards("ApplyDamage", damage, SendMessageOptions.DontRequireReceiver);
+                Vector3 incomingVec = hit.point - shootOrigin.position;
+                Vector3 reflectVec = Vector3.Reflect(incomingVec, hit.normal);
+                GameObject clone = Instantiate(hitParticles, hit.point, Quaternion.Euler(reflectVec));
             }
             else
             {
