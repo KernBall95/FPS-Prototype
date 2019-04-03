@@ -5,7 +5,9 @@ using UnityEngine;
 public class TestTarget : MonoBehaviour {
 
     public int hitPoints = 3;
+
     Renderer rend;
+    Rigidbody rb;
 
     void Start()
     {
